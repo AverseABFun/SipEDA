@@ -1,17 +1,25 @@
 package main
 
 import (
-	"fmt"
+	"flag"
 	"os"
 
 	"github.com/averseabfun/sipeda"
 )
 
+var commands []string
+
 func main() {
+	flag.Parse()
+
+	commands = flag.Args()
+
 	var f, err = os.Open("../example/example.fop.sip")
 	if err != nil {
 		panic(err)
 	}
 	l, err := sipeda.ParseFile(f)
-	fmt.Printf("%#v, %#v\n", l, err)
+	if err != nil {
+		panic(err)
+	}
 }

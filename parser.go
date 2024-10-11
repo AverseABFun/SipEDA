@@ -1,6 +1,7 @@
 package sipeda
 
 import (
+	"fmt"
 	"io"
 	"regexp"
 	"strings"
@@ -19,13 +20,31 @@ func readBytes(r io.Reader, numBytes uint) ([]byte, error) {
 
 var re = regexp.MustCompile(`//.*`)
 
+func SkipComment(r io.Reader) {
+	var lastChar byte
+	for lastChar != '\n' {
+		var b, err = readBytes(r, 1)
+		if err != nil {
+			return
+		}
+		lastChar = b[0]
+	}
+}
+
 func ParseLine(r io.Reader) (Line, error) {
 	var in []byte
 	var lastChar byte
 	for lastChar != ';' {
 		var b, err = readBytes(r, 1)
 		if err != nil {
+			if in != nil {
+				fmt.Printf("Error: Before reaching ; got %v\n", err)
+			}
 			return Line{}, err
+		}
+		if lastChar == '/' && b[0] == '/' {
+			SkipComment(r)
+			return Line{}, nil
 		}
 		in = append(in, b[0])
 		lastChar = b[0]
@@ -53,7 +72,12 @@ func ParseFile(r io.Reader) ([]Line, error) {
 	for err == nil {
 		var l Line
 		l, err = ParseLine(r)
-		out = append(out, l)
+		if l.Command != "" {
+			out = append(out, l)
+		}
+	}
+	if err == io.EOF {
+		return out, nil
 	}
 	return out, err
 }
