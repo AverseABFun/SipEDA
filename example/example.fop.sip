@@ -2,13 +2,13 @@
 version 0.1;
 type footprint;
 
-footprint; // start a new footprint, have multiple "footprint;...endfootprint;" blocks
+footprint; // start a new footprint, have multiple footprint;...endfootprint; blocks
            // for multiple footprints in one file
 
 // if the component is set to the other side, all layers will
 // be automatically flipped(9 minus layer #)
-lib "SMD";     // library of the footprint
-name "0603";   // name of the footprint
+lib SMD;     // library of the footprint
+name 0603;   // name of the footprint
 pads 2;        // number of pads
 pads smd;      // smd or tht
 units mm;      // use millimeters(supports mm, mil, and in)
@@ -43,17 +43,17 @@ draw;
     x 0;
     y 1.15;
     align center;
-    text "$ref";
+    text $ref;
 
     x 0;
     y -1.15;
     align center;
-    text "$comp";
+    text $comp;
 
     x 0;
     y -2;
     align center;
-    text "$desc";
+    text $desc;
 
 enddraw;
 
@@ -76,8 +76,8 @@ endfootprint;
 
 footprint;
 
-lib "TP";
-name "1.0mm";
+lib TP;
+name 1.0mm;
 pads 1;
 pads smd;
 units mm;
@@ -102,12 +102,12 @@ draw;
     x 0;
     y 2;
     align center;
-    text "$ref";
+    text $ref;
 
     x 0;
     y -2;
     align center;
-    text "$desc";
+    text $desc;
 
 enddraw;
 

@@ -2,23 +2,23 @@
 version 0.1;
 type schematic;
 
-add_cmp_lib "example.cmp.sip" // add a schematic library
+add_cmp_lib example.cmp.sip // add a schematic library
 
 rail GND; // create a rail
 rail INOUT;
 
-component "Common:resistor"; // add a component
+component Common:resistor; // add a component
 ref 1;                       // set the reference of the last added component
 footprint default;           // set the footprint to be the default
 
-component "Common:test_point";
+component Common:test_point;
 ref 2;
-desc "GND"; // add a description to the component(will be put on the pcb)
+desc GND; // add a description to the component(will be put on the pcb)
 footprint default;
 
-component "Common:test_point";
+component Common:test_point;
 ref 3;
-desc "INOUT";
+desc INOUT;
 footprint default;
 
 point 1.0; // add one point to connect
