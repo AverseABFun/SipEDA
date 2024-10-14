@@ -37,8 +37,8 @@ func ParseLine(r io.Reader) (Line, error) {
 	for lastChar != ';' {
 		var b, err = readBytes(r, 1)
 		if err != nil {
-			if in != nil {
-				fmt.Printf("Error: Before reaching ; got %v\n", err)
+			if in != nil && strings.TrimSpace(string(in)) != "" {
+				fmt.Printf("Error: Before reaching ; got %v\n(so far got: \"%s\")", err, in)
 			}
 			return Line{}, err
 		}
@@ -56,6 +56,7 @@ func ParseLine(r io.Reader) (Line, error) {
 		return Line{}, nil
 	}
 	ins = strings.TrimRight(ins, ";")
+	ins = strings.ReplaceAll(ins, "\\:", ";")
 
 	var out = Line{}
 	out.Command = strings.Split(ins, " ")[0]

@@ -42,17 +42,20 @@ draw;
 
     x 0;
     y 1.15;
-    align center;
-    text $ref;
+    align center; // align the text to the center
+    points 20;    // set the font size to 20 points
+    text $ref;    // set the text to be the reference
 
     x 0;
     y -1.15;
     align center;
+    points 20;
     text $comp;
 
     x 0;
     y -2;
     align center;
+    points 20;
     text $desc;
 
 enddraw;

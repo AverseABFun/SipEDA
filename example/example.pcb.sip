@@ -6,10 +6,10 @@ add_sch example.sch.sip;    // add a schematic to check against
 add_fp_lib example.fop.sip; // add a footprint library
 
 footprint SMD:0603; // add a footprint
-ref 1;                // set a reference number(connects to schematic)
-x 0;                  // set the x...
-y 0;                  // and the y
-rotate 90;            // rotate 90 degrees
+ref 1;              // set a reference number(connects to schematic)
+x 0;                // set the x...
+y 0;                // and the y
+rotate 90;          // rotate 90 degrees
 
 footprint TP:1.0mm;
 ref 2;
@@ -23,7 +23,9 @@ y 3;
 
 p 1.0; // get x and y from a pad
        // you can also use x and y commands to set position
+       // then use "point" to create the point
 p 2.0;
+// add more points to create lines between them
 track; // create a track
 
 p 1.1;

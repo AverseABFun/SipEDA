@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"os"
 
 	"github.com/averseabfun/sipeda"
@@ -14,7 +15,7 @@ func main() {
 
 	commands = flag.Args()
 
-	var f, err = os.Open("../example/example.fop.sip")
+	var f, err = os.Open("../example/example.sch.sip")
 	if err != nil {
 		panic(err)
 	}
@@ -22,4 +23,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println(sipeda.ValidateFile(l))
 }

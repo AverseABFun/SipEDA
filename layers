@@ -1,0 +1,4 @@
+0cl-9cl - Copper layers(zero bottom, nine top)
+0ss and 9ss - Silkscreen layers, named for consistency
+0mg and 9mg - Margin layers(essentially component keep out)
+0fb and 9fb - Fabrication layers
